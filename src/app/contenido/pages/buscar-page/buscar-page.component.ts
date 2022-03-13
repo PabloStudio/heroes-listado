@@ -44,7 +44,6 @@ export class BuscarPageComponent
       else
       {
         this.mostrarHeroe = false;
-        console.log("no se encontro")
       }
     }
   }
