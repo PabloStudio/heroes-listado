@@ -1,1 +1,46 @@
-/* You can add global styles to this file, and also import other style files */
+/* Estilos globales de CSS */
+body
+{
+    text-decoration: none;
+    background-color: var(--surface-b);
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+}
+
+.sidebar
+{
+    background-color: rgb(14, 13, 13);
+    padding: 10px;
+    width: 100%;
+    height: 55px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.boton-sidebar
+{
+    color: white !important; 
+    margin-left: 15px !important;
+}
+
+.imagen-heroes-home
+{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.imagen-heroe-tabla
+{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.imagen-heroe-busqueda
+{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+}

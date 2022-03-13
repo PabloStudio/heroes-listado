@@ -1,0 +1,73 @@
+<div class="container">
+
+    <!-- Titulo -->
+    <hr>
+    <h4 class="text-center animate__animated animate__bounceIn"> Buscador </h4>
+    <hr>
+
+    <div style="margin-top: 15px;">
+    
+        <input 
+            type="text" 
+            pInputText placeholder="Buscar Superheroe..." 
+            style="width: 100%;"
+            [(ngModel)]="termino"
+            (keyup.enter)="buscarHeroe()"
+        >
+        
+    </div>
+
+    <!-- Mostrar Heroe -->
+    <div *ngIf="terminoValor != ''">
+
+        <div *ngIf="mostrarHeroe; else Error">
+            <!-- Titulo -->
+            <hr>
+            <h4 class="text-center"> {{ heroeSeleccionado.superheroe }} </h4>
+            <hr>
+    
+            <!-- Foto -->
+            <div class="text-center">
+                <img src="{{ heroeSeleccionado.url }}" class="imagen-heroe-busqueda">
+            </div>
+    
+            <!-- Valores -->
+            <ul class="list-group text-center" style="margin-top: 10px;">
+                <li class="list-group-item" style="background-color: rgb(24, 24, 24); color: white;">
+                    <strong> Nombre </strong> {{ heroeSeleccionado.nombre }}
+                </li>
+            </ul>
+            <ul class="list-group text-center">
+                <li class="list-group-item" style="background-color: rgb(24, 24, 24); color: white;">
+                    <strong> Ubicacion </strong> {{ heroeSeleccionado.ubicacion }}
+                </li>
+            </ul>
+            <ul class="list-group text-center">
+                <li class="list-group-item" style="background-color: rgb(24, 24, 24); color: white;">
+                    <strong> Descripcion </strong> {{ heroeSeleccionado.descripcion }}
+                </li>
+            </ul>
+            <ul class="list-group text-center">
+                <li class="list-group-item" style="background-color: rgb(24, 24, 24); color: white;">
+                    <strong> Poder </strong> {{ heroeSeleccionado.poder }}
+                </li>
+            </ul>
+            <ul class="list-group text-center">
+                <li class="list-group-item" style="background-color: rgb(24, 24, 24); color: white;">
+                    <strong> Editorial </strong> {{ heroeSeleccionado.editorial }}
+                </li>
+            </ul>
+    
+        </div>
+    
+        <ng-template #Error>
+            <div class="container alert alert-primary text-center" style="margin-top: 20px">
+                No se encontro el termino introducido, introduzca otro o verifique.
+            </div>
+        </ng-template>
+    
+    </div>
+    
+</div>
+
+<span style="margin: 20px"></span>

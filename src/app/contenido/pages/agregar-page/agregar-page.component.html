@@ -1,0 +1,92 @@
+<div class="container">
+
+    <!-- Titulo -->
+    <hr>
+    <h4 class="text-center animate__animated animate__bounceIn"> {{ ( id )? "Editar" : "Agregar" }} Heroe </h4>
+    <hr>
+
+    <!-- Formulario -->
+    <div style="margin-top: 15px;">
+        <input 
+            type="text" 
+            pInputText placeholder="Nombre del superheroe..." 
+            style="width: 100%;"
+            [(ngModel)]="superheroe"
+        >
+    </div>
+
+    <div style="margin-top: 15px;">      
+        <input 
+            type="text" 
+            pInputText placeholder="Nombre de la persona..." 
+            style="width: 100%;"
+            [(ngModel)]="nombre"
+        >
+    </div>
+
+    <div style="margin-top: 15px;">      
+        <input 
+            type="text" 
+            pInputText placeholder="Url, se recomienda imagenes 200x200..." 
+            style="width: 100%;"
+            [(ngModel)]="url"
+        >
+    </div>
+
+    <div style="margin-top: 15px;">
+        <input 
+            type="text" 
+            pInputText placeholder="Ubicación..." 
+            style="width: 100%;"
+            [(ngModel)]="ubicacion"
+        >
+    </div>
+
+    <div style="margin-top: 15px;">
+        <textarea 
+            rows="4" cols="30" 
+            pInputTextarea style="width: 100%"
+            placeholder="Descripción..."
+            [(ngModel)]="descripcion">
+        </textarea>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div style="margin-top: 15px;">
+                <input 
+                    type="text" 
+                    pInputText placeholder="Editorial..."
+                    style="width: 100%;"
+                    [(ngModel)]="editorial"
+                >
+            </div>        
+        </div>
+
+        <div class="col-6">
+            <div style="margin-top: 15px;" class="grid p-fluid">
+                <p-inputNumber 
+                    [(ngModel)]="poder"
+                    placeholder="Poder (1-9)">
+                </p-inputNumber>
+            </div>        
+        </div>
+    </div>
+
+    <!-- Boton -->
+    <button 
+        pButton 
+        pRipple type="button" 
+        label="{{ ( id )? 'Guardar' : 'Agregar' }}" 
+        class="p-button-success" 
+        (click)="( id ) ? modificar() : guardar()"
+        style="margin-top: 20px; width: 100%;">
+    </button>
+
+</div>
+
+<!-- Dialog de Error -->
+<p-dialog header="Todos los campos deben tener datos, para que se agregue el Heroe" [(visible)]="display" [style]="{width: '90%'}">
+</p-dialog>
+
+<span style="margin: 20px"></span> <!-- Espacio en Blanco -->

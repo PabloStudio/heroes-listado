@@ -1,0 +1,90 @@
+<div class="container">
+
+    <!-- Titulo -->
+    <hr>
+    <h4 class="text-center animate__animated animate__bounceIn"> Listado de Heroes </h4>
+    <hr>
+
+    <!-- Tabla -->
+    <p-table [value]="heroes" responsiveLayout="scroll">
+        <ng-template pTemplate="header"> <!-- Header-->
+            <tr> 
+                <th class="text-center">#</th>
+                <th class="text-center">Superheroe</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Ubicación</th>
+                <th class="text-center">Descripcion</th>
+                <th class="text-center">Poder</th>
+                <th class="text-center">Editorial</th>
+                <th class="text-center">
+                    <a routerLink="/agregar" style="text-decoration: none">
+                        <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-success p-button-text"></button>
+                    </a>              
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-heroes let-i="rowIndex"> <!-- Body -->
+            <tr>
+                <!-- Imagen -->
+                <td class="text-center">
+                    <img src="{{ heroes.url }}" class="imagen-heroe-tabla">
+                </td>
+                <!-- SuperHeroe -->
+                <td class="text-center"> 
+                    {{ heroes.superheroe }}
+                </td>
+                <!-- Nombre -->
+                <td class="text-center"> 
+                    {{ heroes.nombre }}
+                </td>
+                <!-- Ubicacion -->
+                <td class="text-center">
+                    {{ heroes.ubicacion }}
+                </td>
+                <!-- Descripcion -->
+                <td class="text-center">
+                    <button 
+                        pButton 
+                        pRipple 
+                        type="button" 
+                        icon="pi pi-info-circle" 
+                        class="p-button-rounded p-button-text" 
+                        (click)="valorDescripcion(i)">
+                    </button>
+                </td>
+                <!-- Poder -->
+                <td class="text-center">
+                    <div *ngIf="heroes.poder < 4" style="color: rgb(236, 102, 102)"> <strong> {{ heroes.poder }} </strong> </div>
+                    <div *ngIf="heroes.poder > 3 && heroes.poder < 7" style="color: rgb(243, 195, 107)"> <strong> {{ heroes.poder }} </strong> </div>
+                    <div *ngIf="heroes.poder > 6 && heroes.poder < 10" style="color: rgb(92, 221, 92)"> <strong> {{ heroes.poder }} </strong> </div>
+                </td>
+                <!-- Editorial -->
+                <td class="text-center"> 
+                    {{ heroes.editorial }}
+                </td>
+                <!-- Acciones -->
+                <td class="text-center"> 
+                    <button 
+                        pButton pRipple 
+                        type="button" icon="pi pi-pencil" 
+                        class="p-button-rounded p-button-help p-button-text" (click)="editar( heroes.id )">
+                    </button>
+                    <button 
+                        pButton pRipple 
+                        type="button" icon="pi pi-times" 
+                        class="p-button-rounded p-button-danger p-button-text" (click)="borrarHeroe(i)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <!-- Dialog de Descripcion -->
+    <p-dialog header="Descripción" [(visible)]="display" [style]="{width: '90%'}">
+        {{ descripcionHeroe }}
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="display = false" label="Entendido" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-dialog>
+
+</div>
