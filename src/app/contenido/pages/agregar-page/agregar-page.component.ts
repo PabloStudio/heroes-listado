@@ -24,6 +24,7 @@ export class AgregarPageComponent implements OnInit
   poder!: number;
   display: any;
   id!: number;
+  longitud: number = 0;
   
   // Variables.
   heroes: Heroes[] = [];
@@ -40,8 +41,11 @@ export class AgregarPageComponent implements OnInit
 
   ngOnInit(): void {
     this.id = Number(this.activeRoute.snapshot.paramMap.get('id'));
-    if( this.id ){
-      this.heroe = this.heroes.find( heroe => heroe.id === this.id ) ;
+    if( this.id )
+    {
+      this.heroe = this.heroes.find( heroe => heroe.id === this.id );
+      this.longitud = this.heroes.findIndex( heroe => heroe.id === this.id );
+
       this.cargarCampos();
     }
   }
@@ -70,7 +74,6 @@ export class AgregarPageComponent implements OnInit
     
     if (this.HeroesService.heroes.length == 0)
     {
-      console.log(1)
       this.HeroesService.heroes.push(
       {
         id: 1,
@@ -85,7 +88,6 @@ export class AgregarPageComponent implements OnInit
     }
     else
     {
-      console.log(2)
       this.HeroesService.heroes.push(
       {
         id: this.HeroesService.heroes[this.HeroesService.heroes.length - 1].id! + 1,
@@ -99,6 +101,7 @@ export class AgregarPageComponent implements OnInit
       });
     }
 
+    this.HeroesService.guardar();
     this.router.navigate(["listado"]);
 
   }
@@ -114,7 +117,8 @@ export class AgregarPageComponent implements OnInit
 
     if (this.poder > 9) { this.poder = 9 }
 
-    this.HeroesService.heroes[this.id - 1] = {
+    // Editar Objeto.
+    this.HeroesService.heroes[this.longitud] = {
       id: this.id,      
       url: this.url,
       superheroe: this.superheroe,
@@ -125,6 +129,7 @@ export class AgregarPageComponent implements OnInit
       editorial: this.editorial
     };
 
+    this.HeroesService.guardar();
     this.router.navigate(["listado"]);
   }
 }

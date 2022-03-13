@@ -44,4 +44,15 @@ export class HeroesService
       editorial: "Marvel"
     }
   ]
+
+  // Metodos.
+  guardar()
+  {
+    localStorage.setItem("heroes", JSON.stringify(this.heroes));
+  }
+
+  cargar()
+  {
+    this.heroes = JSON.parse(localStorage.getItem("heroes")!);
+  }
 }

@@ -26,19 +26,23 @@ export class ListadoPageComponent
   constructor( private HeroesService: HeroesService,
                private router: Router) 
   {
-    this.heroes = this.HeroesService.heroes;
+    if (window.localStorage.getItem("heroes") !== null)
+    {
+      this.HeroesService.cargar();
+    }
+    this.heroes = this.HeroesService.heroes;  
   }
 
   // Metodos.
   borrarHeroe(id: number): void
   {
-    this.heroes.splice(id, 1)
+    this.heroes.splice(id, 1);
+    this.HeroesService.guardar();
   }
 
   showDialog(): void
   {
     this.display = true;
-    console.log(this.heroes[0].poder)
   }
 
   valorDescripcion(id: number): void
